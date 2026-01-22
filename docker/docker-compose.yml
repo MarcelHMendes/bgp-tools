@@ -1,16 +1,18 @@
+version: '3.3'
+
 services:
   bgpmonitor-dump:
     container_name: peering_bgpmonitor
     build: ./bgpdownloader
     volumes:
-      - /etc/peering/monitor/data:/var/monitor/data
-      - /etc/peering/monitor/config.json:/usr/source/app/config.json
+      - ./data:/var/monitor/data
+      - ./config.json:/usr/source/app/config.json
   ripemonitor-dump:
     container_name: peering_ripemonitor
     build: ./ripedownloader
     volumes:
-      - /etc/peering/monitor/data:/var/monitor/data
-      - /etc/peering/monitor/config.json:/usr/source/app/config.json
+      - ./data:/var/monitor/data
+      - ./config.json:/usr/source/app/config.json
     cap_drop:
       - SYS_ADMIN
       - SETUID
@@ -22,5 +24,5 @@ services:
     container_name: peering_dataprocessing
     build: ./dataprocessing
     volumes:
-      - /etc/peering/monitor/data/:/var/monitor/data
-      - /etc/peering/monitor/config.json:/usr/source/app/config.json
+      - ./data/:/var/monitor/data
+      - ./config.json:/usr/source/app/config.json
