@@ -1,0 +1,601 @@
+{
+    "email": "marcelmendes@dcc.ufmg.br",
+    "rounds": [
+        {
+            "138.185.228.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.229.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.230.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "138.185.231.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "204.9.170.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "138.185.228.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.229.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.230.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "138.185.231.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "204.9.170.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "138.185.228.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.229.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.230.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "138.185.231.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "204.9.170.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "138.185.228.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.229.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.230.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "138.185.231.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "204.9.170.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "138.185.228.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.229.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.230.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "138.185.231.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "204.9.170.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "138.185.228.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.229.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.230.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "138.185.231.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "204.9.170.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "138.185.228.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.229.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    }
+                ]
+            },
+            "138.185.230.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "138.185.231.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            },
+            "204.9.170.0/24": {
+                "announce": [
+                    {
+                        "muxes": [
+                            "vtrtoronto"
+                        ],
+                        "origin": 47065
+                    },
+                    {
+                        "muxes": [
+                            "vtrmiami"
+                        ],
+                        "origin": 61574,
+                        "prepend": [
+                            61574,
+                            61574,
+                            61574,
+                            61574,
+                            61574
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "description": "Experiment 5 (traceroute-extended) vtrtoronto (valid 61574, invalid 47065) id: 22/01/2026"
+}
