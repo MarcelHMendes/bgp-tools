@@ -5,13 +5,13 @@ services:
     container_name: peering_bgpmonitor
     build: ./bgpdownloader
     volumes:
-      - ./data:/var/monitor/data
-      - ./config.json:/usr/source/app/config.json
+      - ./bgpdownloader/data:/usr/src/app/data
+      - ./config.json:/usr/src/app/config.json
   ripemonitor-dump:
     container_name: peering_ripemonitor
     build: ./ripedownloader
     volumes:
-      - ./data:/var/monitor/data
+      - ./data:/usr/source/app/
       - ./config.json:/usr/source/app/config.json
     cap_drop:
       - SYS_ADMIN

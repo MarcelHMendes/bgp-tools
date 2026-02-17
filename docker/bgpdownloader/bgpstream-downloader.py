@@ -171,7 +171,7 @@ def main():
                 collectors=opts.collectors,
             )
         )
-
+    
     pool = Pool(processes=8)
     results_iterator = list(pool.imap(process_bgpdump, bgp_dumps))
 
@@ -184,7 +184,8 @@ def main():
         stream_list.extend(stream)
 
     file_name = f"bgpdump_{TIMES[0]}_{TIMES[-1]}_{opts.dump_type}_{opts.project}.json"
-    base_path = "/var/monitor/data"
+    base_path = "/usr/src/app/data"
+
     with open(os.path.join(base_path, file_name), "w", encoding="utf-8") as fd:
         json.dump(stream_list, fd, ensure_ascii=False, indent=4)
 

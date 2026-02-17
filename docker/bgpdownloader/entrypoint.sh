@@ -2,7 +2,7 @@
 
 set -e
 
-pushd /usr/source/app
+pushd /usr/src/app
 
 prefix=$(jq -r '.prefix' config.json)
 dump_type=$(jq -r '.dump_type' config.json)

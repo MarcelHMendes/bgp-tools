@@ -3,10 +3,10 @@
 ## Resumo dos Experimentos 5
 - **Valid:** 61574
 - **Invalid:** 47065
-- **Rodadas:** 6
-- **Duração:** 9 horas (cada experimento)
+- **Rodadas:** 8
+- **Duração:** 12 horas (cada experimento)
 
-## Localização dos Sites
+### Localização dos Sites
 
 | Good Site | Bad Site |
 |-----------|----------|
@@ -16,6 +16,24 @@
 | vtrmiami | vtrtoronto |
 | vtrsaopaulo | ufmg01 |
 | vtrmiami | utah01 |
+
+## Resumo dos Experimentos 6
+- **Valid:** 61574
+- **Invalid:** 47065
+- **Rodadas:** 8
+- **Duração:** 12 horas (cada experimento)
+
+### Localização dos Sites
+
+| Good Site | Bad Site|
+|-----------|---------|
+| vtrtoronto   | amsterdam01 |
+| vtrmiami     | -- |
+| vtrmumbai    | -- |
+| vtrsaopaulo  | -- |
+| vtrseoul     | -- |
+| vtrsingapore | -- |
+
 
 ## Prefixos
 

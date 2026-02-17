@@ -8,7 +8,7 @@ RUN apt-get update && \
 RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb \
     && dpkg -i dumb-init_*.deb
 
-WORKDIR /usr/source/app
+WORKDIR /usr/src/app
 
 COPY lib.py .
 COPY bgpstream-downloader.py .
@@ -16,10 +16,14 @@ COPY entrypoint.sh .
 
 RUN chmod u+x ./entrypoint.sh
 
-RUN groupadd -g 10001 caida && \
-   useradd -u 10000 -g caida caida \
-   && chown -R caida:caida /usr/source/app
+RUN mkdir -p /usr/src/app/data/
 
-USER caida:caida
+RUN groupadd -g 1001 mmendes && \
+    useradd -u 1001 -g mmendes -m mmendes && \
+    mkdir -p /usr/src/app/data && \
+    chown -R 1001:1001 /usr/src/app/data && \
+    chown -R 1001:1001 /usr/src/app
+
+USER mmendes
 
 ENTRYPOINT ["./entrypoint.sh"]
