@@ -19,11 +19,18 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 RUN chmod u+x ./entrypoint.sh
+RUN chmod 777 ./process-ripe-mesurements.py
 
-RUN groupadd -g 10001 dataproc && \
-   useradd -u 10000 -g dataproc dataproc \
-   && chown -R dataproc:dataproc /usr/source/app
+RUN mkdir data
+RUN chmod 777 data
 
-USER dataproc:dataproc
+RUN groupadd -g 10000 mmendes && \
+   useradd -u 10000 -g mmendes mmendes \
+   && chown -R mmendes:mmendes /usr/source/app
+
+RUN usermod -aG sudo mmendes && \
+    echo "mmendes ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER mmendes:mmendes
 
 ENTRYPOINT ["/usr/source/app/entrypoint.sh"]

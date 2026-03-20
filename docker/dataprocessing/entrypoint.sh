@@ -24,7 +24,7 @@ DATE=$(jq -r '.end_date' config.json)
 # Create db
 python3 db.py
 
-python3 traceroutes_ip2file.py --ripedir /var/monitor/data/ripe-raw_"$DATE"/ --outdir ips_file
+python3 traceroutes_ip2file.py --ripedir ./ripedata/data/ripe-raw_"$DATE"/ --outdir ips_file
 
 # remove duplicates and sort IPs
 sort -u ips_file > ips_file_sorted
@@ -38,9 +38,6 @@ sort -u ips_mapped > ips_mapped_sorted
 # remove spaces, add comma separation and remove duplicate mapping
 sed 's/ //g; s/|/,/g'  ips_mapped_sorted  | cut -d',' -f1-3 | remove_duplicates_addr > ips_mapped.csv
 
-# import data to database
-sqlite3 cymru.db ".import --csv ips_mapped.csv ip_asn_mapping"
-
-python3 process-ripe-mesurements.py --ripedir /var/monitor/data/ripe-raw_"$DATE"/ --db_file cymru.db --outdir /var/monitor/data/ripe-compiled/measurements_"$DATE".json
+python3 process-ripe-mesurements.py --ripedir ./ripedata/data/ripe-raw_"$DATE"/ --db_file cymru.db --outdir ./data/measurements_"$DATE".json
 
 #python3 identify_rov_enforcement.py --measurements_file  "/var/monitor/data/ripe-compiled/measurements_$DATE.json"

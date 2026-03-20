@@ -5,11 +5,14 @@ import json
 import os
 import pathlib
 import sys
-
+import logging
+import sqlite3
 import ip2as
 import lib
 import radix
 
+HIT = 0
+MISS = 0
 
 def routeviews_db():
     """Return routeviews mapping"""
@@ -21,30 +24,21 @@ def routeviews_db():
     return ip2asn
 
 
-def cymru_db(db_file):
-    """Return team cymru mapping"""
-    ip2asn = ip2as.IP2ASDict()
-    ip2asn = ip2asn.from_team_cymru_sqlite3(db_file)
-    return ip2asn
-
-
-def ip2asn_mapping(radixdb, asdictdb, traceroute_hops):
+def ip2asn_mapping(radixdb, traceroute_hops=None):
     """Map IP to ASN using routeviews and team cymru data"""
     hops = []
     for hop in traceroute_hops:
         result = hop.get("result", None)
-        # if not result:
-        #    continue
         if result:
             ip_str = result[0].get("from", None)
         else:
             ip_str = None
-        asn = resolve_asn(radixdb, asdictdb, ip_str)
+        asn = resolve_asn(radixdb, ip_str)
         hops.append(asn)
     return hops
 
 
-def resolve_asn(radixdb, asdictdb, ip_str):
+def resolve_asn(radixdb, ip_str=None):
     if not ip_str:
         return None
 
@@ -58,9 +52,12 @@ def resolve_asn(radixdb, asdictdb, ip_str):
     # resolve via routeviews.
     if not asn:
         asn = radixdb.get(ip_str)
-    # if radixdb (routeviews) doesn't resolve, we try asdictdb (cymru)
-    if not asn:
-        asn = asdictdb.get(ip_str, None)
+        global HIT, MISS
+        if asn:
+            HIT += 1
+        else:
+            MISS += 1
+
     return asn
 
 
@@ -164,7 +161,6 @@ def main():
     opts = parser.parse_args()
 
     rv_ip2asn = routeviews_db()
-    cy_ip2asn = cymru_db(opts.db_file)
 
     parsed_data = []
     for file in lib.get_ripe_files_list(opts.ripedir):
@@ -177,9 +173,9 @@ def main():
             parsed_traceroute["dst_addr"] = traceroute.get("dst_addr", "*")
             parsed_traceroute["endtime"] = traceroute.get("endtime", "*")
 
-            origin = resolve_asn(rv_ip2asn, cy_ip2asn, traceroute.get("src_addr", None))
+            origin = resolve_asn(rv_ip2asn, ip_str=traceroute.get("src_addr", None))
             asn_path = ip2asn_mapping(
-                rv_ip2asn, cy_ip2asn, traceroute.get("result", None)
+                rv_ip2asn, traceroute_hops=traceroute.get("result", None)
             )
 
             asn_path_sanitized, origin_sanitized = sanitize_path(asn_path, origin)
@@ -192,6 +188,7 @@ def main():
     with open(opts.outdir, "w") as fd_out:
         json.dump(parsed_data, fd_out)
 
+    print(f"HIT: {HIT}, MISS: {MISS}")
 
 if __name__ == "__main__":
     sys.exit(main())

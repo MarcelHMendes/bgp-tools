@@ -11,7 +11,7 @@ services:
     container_name: peering_ripemonitor
     build: ./ripedownloader
     volumes:
-      - ./data:/usr/source/app/
+      - ./ripedownloader/data:/usr/source/app/data/
       - ./config.json:/usr/source/app/config.json
     cap_drop:
       - SYS_ADMIN
@@ -24,5 +24,6 @@ services:
     container_name: peering_dataprocessing
     build: ./dataprocessing
     volumes:
-      - ./data/:/var/monitor/data
+      - ./ripedownloader/data/:/usr/source/app/ripedata/data/
+      - ./dataprocessing/data/:/usr/source/app/data/
       - ./config.json:/usr/source/app/config.json
