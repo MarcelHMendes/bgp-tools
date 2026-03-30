@@ -20,6 +20,6 @@ bgp-tools
     │   │   └── filed_configs
     │   ├── html
     │  
-    ├── data
+    ├── data (deve ser criado e mantido o dataset de relacionamento entre ASes)
     └── dump (deve ser criado com permissão de escrita)
 ```
