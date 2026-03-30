@@ -23,9 +23,19 @@ def routeviews_db():
     ip2asn = ip2asn.from_caida_prefix2as(local)
     return ip2asn
 
+def load_ip2asn_csv(csv_path):
+    """Load IP to ASN mapping from CSV file using team cymru data"""
+    ip2asn_dict = {}
+    with open(csv_path, 'r') as f:
+        for line in f:
+            parts = line.strip().split(',')
+            if len(parts) >= 2:
+                asn, ip = parts[0], parts[1]
+                ip2asn_dict[ip] = asn
+    return ip2asn_dict
 
-def ip2asn_mapping(radixdb, traceroute_hops=None):
-    """Map IP to ASN using routeviews and team cymru data"""
+def ip2asn_mapping(radixdb, ip2asn_dict, traceroute_hops=None):
+    """Map IP to ASN using routeviews data"""
     hops = []
     for hop in traceroute_hops:
         result = hop.get("result", None)
@@ -33,12 +43,12 @@ def ip2asn_mapping(radixdb, traceroute_hops=None):
             ip_str = result[0].get("from", None)
         else:
             ip_str = None
-        asn = resolve_asn(radixdb, ip_str)
+        asn = resolve_asn(radixdb, ip2asn_dict, ip_str)
         hops.append(asn)
     return hops
 
 
-def resolve_asn(radixdb, ip_str=None):
+def resolve_asn(radixdb, ip2asn_dict,ip_str=None):
     if not ip_str:
         return None
 
@@ -52,13 +62,12 @@ def resolve_asn(radixdb, ip_str=None):
     # resolve via routeviews.
     if not asn:
         asn = radixdb.get(ip_str)
-        global HIT, MISS
-        if asn:
-            HIT += 1
-        else:
-            MISS += 1
 
-    return asn
+    # resolve via CSV (last resort)
+    if ip2asn_dict and ip_str in ip2asn_dict:
+        return ip2asn_dict[ip_str]
+
+    return None
 
 
 def remove_adjacent_duplicates(input_list):
@@ -161,6 +170,7 @@ def main():
     opts = parser.parse_args()
 
     rv_ip2asn = routeviews_db()
+    ip2asn_dict = load_ip2asn_csv('ips_mapped.csv')
 
     parsed_data = []
     for file in lib.get_ripe_files_list(opts.ripedir):
@@ -173,9 +183,9 @@ def main():
             parsed_traceroute["dst_addr"] = traceroute.get("dst_addr", "*")
             parsed_traceroute["endtime"] = traceroute.get("endtime", "*")
 
-            origin = resolve_asn(rv_ip2asn, ip_str=traceroute.get("src_addr", None))
+            origin = resolve_asn(rv_ip2asn, ip2asn_dict=ip2asn_dict,ip_str=traceroute.get("src_addr", None))
             asn_path = ip2asn_mapping(
-                rv_ip2asn, traceroute_hops=traceroute.get("result", None)
+                rv_ip2asn, ip2asn_dict=ip2asn_dict, traceroute_hops=traceroute.get("result", None)
             )
 
             asn_path_sanitized, origin_sanitized = sanitize_path(asn_path, origin)

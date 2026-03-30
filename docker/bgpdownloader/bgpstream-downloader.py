@@ -146,6 +146,11 @@ def generate_times_list(opts):
 
     return date_list
 
+def sort_records_by_timestamp(records):
+    try:
+        return sorted(records, key=lambda x: x["timestamp"])
+    except KeyError:
+        raise ValueError("Algum registro não possui o campo 'timestamp'")
 
 def main():
     root = logging.getLogger()
@@ -171,7 +176,7 @@ def main():
                 collectors=opts.collectors,
             )
         )
-    
+
     pool = Pool(processes=8)
     results_iterator = list(pool.imap(process_bgpdump, bgp_dumps))
 
@@ -182,6 +187,9 @@ def main():
 
     for stream in results_iterator:
         stream_list.extend(stream)
+
+    # Sort records before save
+    stream_list = sort_records_by_timestamp(stream_list)
 
     file_name = f"bgpdump_{TIMES[0]}_{TIMES[-1]}_{opts.dump_type}_{opts.project}.json"
     base_path = "/usr/src/app/data"

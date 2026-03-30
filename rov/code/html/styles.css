@@ -1,0 +1,75 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+
+h2 {
+    color: #40961b;
+    margin-bottom: 5px;
+}
+
+h3 {
+    color: #333 !important;
+    margin-bottom: 5px !important;
+    /*display: inline-block;*/
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 1px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.ip-section {
+    margin-bottom: 20px;
+}
+
+/* Additional style for title containers */
+.title-container {
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    margin-right: 20px;
+}
+
+.title-container-wrapper {
+    display: flex;
+}
+
+/*classes*/
+
+
+.prefer-valid {
+    background: rgb(240, 240, 88);
+}
+
+.ignore-roa {
+    background: rgb(252, 192, 80);
+}
+
+.drop-invalid {
+    background: rgb(107, 209, 107);
+}
+
+.prefer-ignore {
+    background: linear-gradient(to right, rgb(240, 240, 88) 50%, rgb(252, 192, 80) 50%);
+}
+
+.prefer-neighbor\/prefer-valid {
+    background: rgb(84, 51, 145);
+}
+
+.unknown-protected {
+    background: rgb(158, 201, 183);
+}
+
+
+.unknown {
+    background: rgb(238, 236, 236);
+}

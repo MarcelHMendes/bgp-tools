@@ -10,8 +10,8 @@ import json
 import argparse
 from multiprocessing import Pool
 
-BAD_ORIGIN = "61574" ## change after new exp
-GOOD_ORIGIN = "47065"
+BAD_ORIGIN = "47065"
+GOOD_ORIGIN = "61574"
 
 MAX = 8 # max processes running in parallel
 
@@ -142,7 +142,7 @@ def is_valley_free(route, asn_t):
     # check wether valley-free is violated
 
 
-    for i in range(len(route_wo_origin)-3, 0):
+    for i in range(len(route_wo_origin) - 2):
         if relationship(route_wo_origin[i], route_wo_origin[i+1]) == "prov-cli" \
         and relationship(route_wo_origin[i+1], route_wo_origin[i+2]) == "cli-prov":
             return False
@@ -330,13 +330,13 @@ def classification_phase2(
 
 def classification(args):
 
-    city, time, measurement, traceroutes = args
+    city, time, bgp_data_folder, traceroutes, measurement = args
 
     start_time = time["start"]
     end_time = time["end"]
-    base_dump = os.path.join("../data/", measurement)
+    base_dump = os.path.join("", bgp_data_folder)
 
-    nicbr_dump = f"{base_dump}_roa_sorted.json"
+    nicbr_dump = f"{base_dump}_roa.json"
 
     p2 = get_records(nicbr_dump, start_time, end_time, "138.185.228.0/24")
     p2 = complete_routes(p2)
@@ -358,11 +358,11 @@ def classification(args):
     p3 = integrate_traces(traceroutes, p3, start_time, end_time, "138.185.231.1")
     p3 = complete_routes(p3)
 
-    arin_dump = f"{base_dump}_no_roa_sorted.json"
+    arin_dump = f"{base_dump}_no_roa.json"
 
     p1 = get_records(arin_dump, start_time, end_time, "204.9.170.0/24")
     p1 = complete_routes(p1)
-    p1 = integrate_traces(traceroutes, p2, start_time, end_time, "138.185.228.1") ##change after new exp
+    p1 = integrate_traces(traceroutes, p1, start_time, end_time, "204.9.170.1")
     p1 = complete_routes(p1)
 
     as_list = []
@@ -371,6 +371,7 @@ def classification(args):
     for key in list(key_group):
         if key not in as_list:
             as_list.append(key)
+    print("as_list:", as_list)
 
     p2, max_p2 = parse_routes(p2, as_list)
     p4, max_p4 = parse_routes(p4, as_list)
@@ -430,7 +431,7 @@ def classification(args):
 
     base_path = os.path.join(f"../dump/{measurement}", city)
     if not os.path.exists(base_path):
-        os.makedirs(base_path)
+        os.makedirs(base_path, exist_ok=True)
 
     file = open(os.path.join(base_path, "classification"), "wb")
     pickle.dump(class_dict, file)
@@ -467,13 +468,13 @@ def main():
     parser = create_parser()
     opts = parser.parse_args()
 
-    with open("../config.json", "r") as config_fd:
+    with open("config.json", "r") as config_fd:
         config = json.load(config_fd)
 
     traceroute_file = config[opts.measurement]["traceroute_file"]
 
     if traceroute_file:
-        with open("../data/" + traceroute_file, "r") as trace_data:
+        with open("../../docker/dataprocessing/data/" + traceroute_file, "r") as trace_data:
             traceroutes = json.load(trace_data)
 
     final_classification = defaultdict(dict)
@@ -486,6 +487,7 @@ def main():
                 config[opts.measurement]["location"][city],
                 config[opts.measurement]["bgpdump"],
                 traceroutes,
+                opts.measurement,
             )
         )
 

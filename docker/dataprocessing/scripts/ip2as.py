@@ -129,8 +129,7 @@ class IP2ASRadix:
         remoteurl = f"{CAIDA_PFX2AS_BASEURL}/{fpath}"
         r = requests.get(remoteurl, timeout=REQUESTS_DOWNLOAD_TIMEOUT)
         r.raise_for_status()
-        dirpath = os.path.dirname(fpath)
-        os.makedirs(dirpath)
+        localfp.parent.mkdir(parents=True, exist_ok=True)  # Mudança aqui
         with open(localfp, "wb") as fd:
             fd.write(r.content)
         return localfp
