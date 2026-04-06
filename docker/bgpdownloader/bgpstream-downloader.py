@@ -133,7 +133,12 @@ def create_parser():
 
 
 def process_bgpdump(bgp_dump):
-    return bgp_dump.download_bgpdump()
+    try:
+        return bgp_dump.download_bgpdump()
+    except RuntimeError as e:
+        if "Could not get next record" in str(e):
+            print(f"⚠ Sem dados para {bgp_dump.start_time} - {bgp_dump.end_time}")
+            return []
 
 
 def generate_times_list(opts):
@@ -141,7 +146,8 @@ def generate_times_list(opts):
     date_list = []
     current_date = opts.start_date
     while current_date <= opts.stop_date:
-        date_list.append(current_date.strftime("%Y-%m-%dT%H:%M:%S.%fZ"))
+        dt = datetime.datetime.combine(current_date, datetime.time(0, 0, 0))
+        date_list.append(dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ"))
         current_date += timedelta(days=1)
 
     return date_list
