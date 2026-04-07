@@ -137,7 +137,7 @@ def process_bgpdump(bgp_dump):
         return bgp_dump.download_bgpdump()
     except RuntimeError as e:
         if "Could not get next record" in str(e):
-            print(f"⚠ Sem dados para {bgp_dump.start_time} - {bgp_dump.end_time}")
+            print(f"⚠ No data for {bgp_dump.start_time} - {bgp_dump.end_time}")
             return []
 
 
