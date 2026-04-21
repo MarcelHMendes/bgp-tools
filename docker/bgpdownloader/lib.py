@@ -1,7 +1,8 @@
 import datetime
-
-# import json
-# import sys
+import glob
+import json
+import os
+import sys
 
 import pybgpstream
 
@@ -32,39 +33,39 @@ RIPE_RIS = [
     "rrc26",
 ]
 ROUTE_VIEWS = [
-    "route-views.amsix",
-    "route-views.bknix",
-    "route-views.chicago",
-    "route-views.chile",
-    "route-views.eqix",
-    "route-views.flix",
-    "route-views.fortaleza",
-    "route-views.gixa",
-    "route-views.gorex",
-    "route-views.isc",
-    "route-views.kixp",
-    "route-views.linx",
-    "route-views.mwix",
-    "route-views.napafrica",
-    "route-views.nwax",
-    "route-views.ny",
-    "route-views.perth",
-    "route-views.phoix",
-    "route-views.peru",
-    "route-views.rio",
-    "route-views.sfmix",
-    "route-views.sg",
-    "route-views.soxrs",
-    "route-views.sydney",
-    "route-views.telxatl",
-    "route-views.uaeix",
-    "route-views.wide",
-    "route-views2",
-    "route-views2.saopaulo",
-    "route-views3",
-    "route-views4",
-    "route-views5",
-    "route-views6",
+    "ix-br.gru",
+     "ix-br2.gru",
+     "netnod.mmx",
+     "locix.fra",
+     "decix.fra",
+     "amsix.ams",
+     "hkix.hkg",
+     "getafix.mnl",
+     "decix.jhb",
+     "ixpn.los",
+    "route-views.bdix",
+     "route-views.bknix",
+     "route-views.chicago",
+     "route-views.eqix",
+     "route-views.flix",
+     "route-views.fortaleza",
+     "route-views.gixa",
+     "route-views.gorex",
+     "route-views.kixp",
+     "route-views.nwax",
+     "route-views.ny",
+     "route-views.perth",
+     "route-views.phoix",
+     "route-views.peru",
+     "route-views.rio",
+     "route-views.sfmix",
+     "route-views.sg",
+     "route-views.sydney",
+     "route-views.telxatl",
+     "route-views.uaeix",
+     "route-views.wide",
+     "amsix.ams",
+     "route-views.soxrs"
 ]
 
 
@@ -116,6 +117,8 @@ def download_bgpstream(
     end_time="2023-05-04T14:08:23.504529Z",
     prefixes=["138.185.229.0/24"],
     record_type="ribs",
+    singlefile=False,
+    data_dir="data",
 ):
     """Return a list of BGPStream objects for a given time interval, collector, prefix and record type.
 
@@ -125,29 +128,49 @@ def download_bgpstream(
         end_time (str): End time of the interval in ISO 8601 format.
         prefix (List)): List of prefixes to filter the BGP updates.
         record_type (str): Type of BGP updates to read - 'ribs' or 'updates'.
+        singlefile (bool): If True, read from local files in data_dir.
+        data_dir (str): Directory for local files.
 
     Returns:
         A list of BGPStream objects configured with the given parameters.
     """
     FILTER = "prefix more {}"
 
-    start_time = datetime_str_to_timestamp(start_time)
-    end_time = datetime_str_to_timestamp(end_time)
-
     filter_string = "ipversion 4"
     for pfx in prefixes:
         filter_string += f" and {FILTER.format(pfx)}"
 
-    stream = pybgpstream.BGPStream(
-        from_time=start_time,
-        until_time=end_time,
-        filter=filter_string,
-        record_type=record_type,
-        collectors=collectors,
-    )
+    if singlefile:
+        import glob
+        day = start_time.split('T')[0]
+        elem_list = []
+        for collector in collectors:
+            path = os.path.join(data_dir, collector, day, "*.bz2")
+            files = glob.glob(path)
+            for file_path in files:
+                stream = pybgpstream.BGPStream(
+                    filter=filter_string,
+                    record_type=record_type,
+                    data_interface="singlefile",
+                )
+                stream.set_data_interface_option("singlefile", "upd-file", file_path)
+                for elem in stream:
+                    elem_list.append(parse_line_string_to_json(str(elem).replace('"', '"')))
+        return elem_list
+    else:
+        start_time_ts = datetime_str_to_timestamp(start_time)
+        end_time_ts = datetime_str_to_timestamp(end_time)
 
-    elem_list = []
-    for elem in stream:
-        elem_list.append(parse_line_string_to_json(str(elem).replace('"', '"')))
+        stream = pybgpstream.BGPStream(
+            from_time=start_time_ts,
+            until_time=end_time_ts,
+            filter=filter_string,
+            record_type=record_type,
+            collectors=collectors,
+        )
 
-    return elem_list
+        elem_list = []
+        for elem in stream:
+            elem_list.append(parse_line_string_to_json(str(elem).replace('"', '"')))
+
+        return elem_list

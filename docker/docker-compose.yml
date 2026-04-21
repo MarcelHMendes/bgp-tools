@@ -1,15 +1,31 @@
 version: '3.3'
 
+networks:
+  bgp_net:
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: 2001:db8:a::/64
+
 services:
   bgpmonitor-dump:
     container_name: peering_bgpmonitor
     build: ./bgpdownloader
+    networks:
+      - bgp_net
     volumes:
       - ./bgpdownloader/data:/usr/src/app/data
       - ./config.json:/usr/src/app/config.json
+    cap_add:
+      - NET_RAW
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
   ripemonitor-dump:
     container_name: peering_ripemonitor
     build: ./ripedownloader
+    networks:
+      - bgp_net
     volumes:
       - ./ripedownloader/data:/usr/source/app/data/
       - ./config.json:/usr/source/app/config.json
@@ -23,6 +39,8 @@ services:
   peeringrov-dataprocessing:
     container_name: peering_dataprocessing
     build: ./dataprocessing
+    networks:
+      - bgp_net
     volumes:
       - ./ripedownloader/data/:/usr/source/app/ripedata/data/
       - ./dataprocessing/data/:/usr/source/app/data/

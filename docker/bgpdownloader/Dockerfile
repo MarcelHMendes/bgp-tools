@@ -4,7 +4,7 @@ LABEL maintainer="Marcel Mendes <marcelmendes@dcc.ufmg.br>"
 
 # Install dumb-init to support our entrypoint script
 RUN apt-get update && \
-    apt-get install -y wget jq
+    apt-get install -y wget jq iputils-ping traceroute
 RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb \
     && dpkg -i dumb-init_*.deb
 
@@ -12,6 +12,7 @@ WORKDIR /usr/src/app
 
 COPY lib.py .
 COPY bgpstream-downloader.py .
+COPY routeviews_updates_downloader.py .
 COPY entrypoint.sh .
 
 RUN chmod u+x ./entrypoint.sh

@@ -1,8 +1,12 @@
 {
-    "prefix": "138.185.228.0/22",
+    "prefix": "204.9.170.0/24",
     "dump_type": "updates",
     "project": "ris+views",
-    "start_date": "2026-02-23",
-    "end_date": "2026-02-26",
-    "api_key": "4c7bb057-ba38-46f3-a926-364c6cb09ea2"
+    "start_date": "2026-01-21",
+    "end_date": "2026-01-26",
+    "api_key": "4c7bb057-ba38-46f3-a926-364c6cb09ea2",
+    "bgpdownload_info": {
+        "singlefile": false,
+        "data_dir": "bgpdownloader/data/singlefile/"
+    }
 }

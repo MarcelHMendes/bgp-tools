@@ -14,7 +14,7 @@ from typing import Dict, List, Tuple, Set, Any
 # Constants
 BAD_ORIGIN = "47065"
 GOOD_ORIGIN = "61574"
-MAX_PROCESSES = 8  # max processes running in parallel
+MAX_PROCESSES = 2  # max processes running in parallel
 ASREL_FILE = "../data/20260201.as-rel2.txt"
 CONFIG_FILE = "config.json"
 DUMP_DIR = "../dump/"

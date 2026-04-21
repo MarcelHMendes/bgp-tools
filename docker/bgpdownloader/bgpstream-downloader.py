@@ -24,6 +24,8 @@ class BGPDump:
     prefixes: List[ipaddress.IPv4Network]
     project: Optional[str] = None
     collectors: Optional[List[str]] = None
+    singlefile: bool = False
+    data_dir: str = "data"
 
     def __post_init__(self):
         self._validate_prefixes()
@@ -66,6 +68,8 @@ class BGPDump:
             record_type=self.dump_type,
             prefixes=self.prefixes,
             collectors=self.collectors,
+            singlefile=self.singlefile,
+            data_dir=self.data_dir,
         )
 
         return stream
@@ -129,6 +133,19 @@ def create_parser():
         default=None,
         help="Collectors to be used",
     )
+    parser.add_argument(
+        "--singlefile",
+        action="store_true",
+        help="Use singlefile interface to read from local files instead of broker",
+    )
+    parser.add_argument(
+        "--data-dir",
+        dest="data_dir",
+        type=str,
+        action="store",
+        default="data",
+        help="Directory containing local data files (used with --singlefile)",
+    )
     return parser
 
 
@@ -137,8 +154,10 @@ def process_bgpdump(bgp_dump):
         return bgp_dump.download_bgpdump()
     except RuntimeError as e:
         if "Could not get next record" in str(e):
-            print(f"⚠ No data for {bgp_dump.start_time} - {bgp_dump.end_time}")
+            print(str(e))
             return []
+
+
 
 
 def generate_times_list(opts):
@@ -180,6 +199,8 @@ def main():
                 prefixes=opts.prefixes,
                 project=opts.project,
                 collectors=opts.collectors,
+                singlefile=opts.singlefile,
+                data_dir=opts.data_dir,
             )
         )
 
