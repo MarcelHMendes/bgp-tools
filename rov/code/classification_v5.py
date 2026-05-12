@@ -220,8 +220,20 @@ class RouteProcessor:
                             pfx_routes[asn].insert(0, asn)
         return pfx_routes
 
+    # Trata corner case não é do algoritmo original
+    @staticmethod
+    def is_close_to_origin(asn_t: str, route: List[str], max_distance: int = 2) -> bool:
+
+        if asn_t not in route:
+            return False
+
+        asn_index = route.index(asn_t)
+        distance_from_end = len(route) - 1 - asn_index
+
+        return distance_from_end <= max_distance
+
     def classification_phase1(self, asn_t: str, class_dict: Dict,
-                            p2: Dict, p4: Dict, p5: Dict, p3: Dict, p1: Dict) -> None:
+                            p2: Dict, p4: Dict, p5: Dict, p3: Dict, p1: Dict, city: str) -> None:
         """First phase of ASN classification"""
         if not asn_t.isdigit() or asn_t in class_dict:
             return
@@ -232,6 +244,21 @@ class RouteProcessor:
         p3_ends_good = p3.get(asn_t, []) and int(p3[asn_t][-1]) == int(GOOD_ORIGIN)
         p1_ends_bad = p1.get(asn_t, []) and int(p1[asn_t][-1]) == int(BAD_ORIGIN)
         p5_ends_bad = p5.get(asn_t, []) and int(p5[asn_t][-1]) == int(BAD_ORIGIN)
+
+        # Trata Corner Case: Check if p3 is empty
+        p3_is_empty = not p3.get(asn_t, [])
+
+        # Trata Corner Case: Check if close to origin in 2 hops
+        #close_to_origin = (
+        #    (p2.get(asn_t, []) and self.is_close_to_origin(asn_t, p2[asn_t])) or
+        #    (p4.get(asn_t, []) and self.is_close_to_origin(asn_t, p4[asn_t])) or
+        #    (p5.get(asn_t, []) and self.is_close_to_origin(asn_t, p5[asn_t])) or
+        #    (p1.get(asn_t, []) and self.is_close_to_origin(asn_t, p1[asn_t]))
+        #)
+
+        # Trata Corner Case: p3 empty + close to origin
+        if p2_ends_bad and p4_ends_bad and p5_ends_bad and p3_is_empty and p1_ends_bad:
+            print(asn_t, f"corner case: p3 empty + {city}")
 
         if p2_ends_bad and p4_ends_bad and p5_ends_bad and p3_ends_good and p1_ends_bad:
             class_dict[asn_t] = "ignore-roa"
@@ -272,6 +299,10 @@ class RouteProcessor:
                 class_dict[asn_t] = "prefer-ignore"
                 corner_cases[asn_t] = ("prefer-valid", "prefer-ignore")
 
+        # Trata corner case: ignore-roa-forced
+        #elif classification == "ignore-roa-forced":
+        #    class_dict[asn_t] = "ignore-roa"
+
     def process_routes(self, dump_file: str, start: int, end: int,
                       prefix: str, traceroutes: List, trace_prefix: str) -> Dict:
         """Process routes for a specific prefix"""
@@ -286,6 +317,22 @@ class RouteProcessor:
         os.makedirs(base_path, exist_ok=True)
         with open(os.path.join(base_path, filename), "wb") as f:
             pickle.dump(data, f)
+
+    @staticmethod
+    def manual_analysis(class_dict: Dict, city: str) -> None:
+        if city == "ufmg01":
+            class_dict["1916"] = "ignore-roa"
+        if city == "utah01":
+            class_dict["210"] = "ignore-roa"
+            class_dict["209"] = "ignore-roa"
+            class_dict["15305"] = "ignore-roa"
+        if city == 'vtrtoronto':
+            class_dict['11670'] = "ignore-roa"
+        if city == 'vtrmumbai':
+            class_dict['9498'] = "ignore-roa"
+            class_dict['137153'] = "ignore-roa"
+            class_dict['24560'] = "ignore-roa"
+
 
     def classify(self, city: str, time_range: Dict,
                 base_dump: str, traceroutes: List) -> Tuple[str, Dict]:
@@ -308,7 +355,6 @@ class RouteProcessor:
 
         # Get all unique ASNs
         as_list = list(set(p2) | set(p4) | set(p5) | set(p3) | set(p1))
-        print(as_list)
 
         # Parse routes and get max length
         p2, max_p2 = self.parse_routes(p2, as_list)
@@ -326,24 +372,31 @@ class RouteProcessor:
             "20473": "ignore-roa"
         }
 
+        self.manual_analysis(class_dict, city)
+
         # Perform classification in reverse order
         for i in range(max_len - 1, -1, -1):
-            for route_set in (p2, p4, p5, p3):
+            for route_set in (p2,): #p2,p3,p4,p5
                 for asn in route_set:
+                    asn_str = str(asn)
+                    if not asn_str.isdigit():
+                        continue
                     if len(route_set[asn]) > i:
-                        self.classification_phase1(route_set[asn][i], class_dict, p2, p4, p5, p3, p1)
+                        self.classification_phase1(route_set[asn][i], class_dict, p2, p4, p5, p3, p1, city)
 
         # Handle corner cases
         corner_cases = {}
         total_cases_phase1 = {}
         for i in range(max_len - 1, -1, -1):
-            for route_set in (p2, p4, p5, p3):
+            for route_set in (p2,): #p2,p3,p4,p5
                 for asn in route_set:
                     if len(route_set[asn]) > i:
                         self.classification_phase2(
                             route_set[asn][i], class_dict, corner_cases,
                             total_cases_phase1, p2, p5, p3, p1
                         )
+
+        self.manual_analysis(class_dict, city)
 
         # Add appends and save results
         p2 = self.add_appends(p2)

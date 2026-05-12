@@ -56,7 +56,7 @@
     "third_experiment": {
         "bgpdump": "bgpdump_2024-06-05T00:00:00.000000Z_2024-06-09T00:00:00.000000Z_updates_ris+views",
         "traceroute_file": "measurements_2023-06-09.json",
-	"prefixes": {
+	    "prefixes": {
             "non_invalid": "138.185.228.0/24",
             "invalid": "138.185.229.0/24",
             "valid": "138.185.231.0/24"
@@ -77,6 +77,42 @@
             "saopaulo": {
                 "start": "2024-06-08T19:30:00.258823Z",
                 "end":"2024-06-08T21:00:00.284014Z"
+            }
+        }
+    },
+    "fifth_experiment": {
+        "bgpdump": "../../docker/bgpdownloader/data/bgpdump_2026-01-21T00:00:00.000000Z_2026-01-26T00:00:00.000000Z_updates_ris+views",
+        "traceroute_file": "measurements_2026-01-26.json",
+	    "prefixes": {
+            "non_invalid": "138.185.228.0/24",
+            "invalid": "138.185.229.0/24",
+            "valid": "138.185.231.0/24"
+        },
+        "location": {
+
+            "utah01": {
+                "start": "2026-01-25T00:00:00.303717Z",
+                "end":"2026-01-25T10:30:00.369982Z"
+            },
+            "ufmg01": {
+                "start": "2026-01-24T12:00:00.329557Z",
+                "end":"2026-01-24T22:30:00.288165Z"
+            },
+            "vtrmumbai": {
+                 "start": "2026-01-22T12:00:00.283687Z",
+                 "end":  "2026-01-22T22:30:00.285557Z"
+            },
+             "vtrsingapore": {
+                 "start": "2026-01-23T12:00:00.336673Z",
+                 "end":  "2026-01-23T22:30:00.334471Z"
+            },
+            "vtrtoronto": {
+                 "start": "2026-01-24T00:00:00.267307Z",
+                 "end":  "2026-01-24T10:30:00.348055Z"
+            },
+            "vtrsaopaulo": {
+                "start": "2026-01-23T00:00:00.326416Z",
+                "end":"2026-01-23T10:30:00.299048Z"
             }
         }
     },

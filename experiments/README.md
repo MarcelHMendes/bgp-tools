@@ -35,6 +35,36 @@
 | vtrsingapore | -- |
 
 
+## Resumo dos Experimentos 7
+
+- **Valid:** 61574
+- **Invalid:** 47065
+- **Rodadas:** 4
+- **Duração:** 6 horas (cada experimento)
+
+### Localização dos Sites
+
+Good Sites: amsterdam01, vtrchicago, vtrseoul
+
+| Good Site | Bad Site|
+|-----------|---------|
+| --  | vtramsterdam |
+| --  | vtratlanta |
+| --  | vtrlondon |
+| --  | vtrjohannesburg |
+| --  | vtrlosangeles |
+| --  | vtrmiami |
+| --  | vtrmadrid |
+| --  | vtrmexico |
+| --  | vtrseoul  |
+| --  | vtrtokyo  |
+| --  | grnet01   |
+| --  | neu01   |
+| --  | seattle01   |
+| --  | ufmg01   |
+| --  | utah01   |
+| --  | wisc01   |
+
 ## Prefixos
 
 | Prefixo | Local | ROA |
