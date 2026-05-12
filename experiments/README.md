@@ -44,22 +44,20 @@
 
 ### Localização dos Sites
 
-*Good Sites:* amsterdam01, vtrchicago, vtrseoul
+*Good Sites and wildcard:* amsterdam01, vtrchicago, vtrseoul, neu01
 
 | Good Site | Bad Site|
 |-----------|---------|
 | --  | vtramsterdam |
-| --  | vtratlanta |
 | --  | vtrlondon |
 | --  | vtrjohannesburg |
 | --  | vtrlosangeles |
 | --  | vtrmiami |
 | --  | vtrmadrid |
 | --  | vtrmexico |
-| --  | vtrseoul  |
+| --  | wildcard*  |
 | --  | vtrtokyo  |
 | --  | grnet01   |
-| --  | neu01   |
 | --  | seattle01   |
 | --  | ufmg01   |
 | --  | utah01   |
