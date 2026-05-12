@@ -44,7 +44,7 @@
 
 ### Localização dos Sites
 
-Good Sites: amsterdam01, vtrchicago, vtrseoul
+*Good Sites:* amsterdam01, vtrchicago, vtrseoul
 
 | Good Site | Bad Site|
 |-----------|---------|
