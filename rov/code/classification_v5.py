@@ -18,6 +18,8 @@ MAX_PROCESSES = 2  # max processes running in parallel
 ASREL_FILE = "../data/20260201.as-rel2.txt"
 CONFIG_FILE = "config.json"
 DUMP_DIR = "../dump/"
+IGNORE_ROA = "ignore-roa"
+PREFER_PEER = "prefer-peer/prefer-valid"
 
 class RouteProcessor:
     """Class to handle route processing and classification logic"""
@@ -196,6 +198,9 @@ class RouteProcessor:
     def integrate_traces(self, traceroutes: List, pfx_routes: Dict,
                         start: int, end: int, prefix: str) -> Dict:
         """Integrate traceroute data with BGP routes"""
+        if not traceroutes:
+            return pfx_routes
+
         mapping_asn_traces = defaultdict(list)
         for trace in traceroutes:
             if (lib.is_timestamp_between(start, end, trace["endtime"]) and
@@ -233,7 +238,8 @@ class RouteProcessor:
         return distance_from_end <= max_distance
 
     def classification_phase1(self, asn_t: str, class_dict: Dict,
-                            p2: Dict, p4: Dict, p5: Dict, p3: Dict, p1: Dict, city: str) -> None:
+                            p2: Dict, p4: Dict, p5: Dict, p3: Dict, p1: Dict,
+                            city: str, p3_empty_corner_cases: Dict[str, Set[str]]) -> None:
         """First phase of ASN classification"""
         if not asn_t.isdigit() or asn_t in class_dict:
             return
@@ -244,6 +250,7 @@ class RouteProcessor:
         p3_ends_good = p3.get(asn_t, []) and int(p3[asn_t][-1]) == int(GOOD_ORIGIN)
         p1_ends_bad = p1.get(asn_t, []) and int(p1[asn_t][-1]) == int(BAD_ORIGIN)
         p5_ends_bad = p5.get(asn_t, []) and int(p5[asn_t][-1]) == int(BAD_ORIGIN)
+        p5_ends_good = p5.get(asn_t, []) and int(p5[asn_t][-1]) == int(GOOD_ORIGIN)
 
         # Trata Corner Case: Check if p3 is empty
         p3_is_empty = not p3.get(asn_t, [])
@@ -259,6 +266,10 @@ class RouteProcessor:
         # Trata Corner Case: p3 empty + close to origin
         if p2_ends_bad and p4_ends_bad and p5_ends_bad and p3_is_empty and p1_ends_bad:
             print(asn_t, f"corner case: p3 empty + {city}")
+            p3_empty_corner_cases[IGNORE_ROA].add(asn_t)
+        if p2_ends_bad and p4_ends_bad and p5_ends_good and p3_is_empty and p1_ends_bad:
+            print(asn_t, f"corner case: p3 empty + {city} prefer-valid or prefer neighbor")
+            p3_empty_corner_cases[PREFER_PEER].add(asn_t)
 
         if p2_ends_bad and p4_ends_bad and p5_ends_bad and p3_ends_good and p1_ends_bad:
             class_dict[asn_t] = "ignore-roa"
@@ -319,19 +330,14 @@ class RouteProcessor:
             pickle.dump(data, f)
 
     @staticmethod
-    def manual_analysis(class_dict: Dict, city: str) -> None:
-        if city == "ufmg01":
-            class_dict["1916"] = "ignore-roa"
-        if city == "utah01":
-            class_dict["210"] = "ignore-roa"
-            class_dict["209"] = "ignore-roa"
-            class_dict["15305"] = "ignore-roa"
-        if city == 'vtrtoronto':
-            class_dict['11670'] = "ignore-roa"
-        if city == 'vtrmumbai':
-            class_dict['9498'] = "ignore-roa"
-            class_dict['137153'] = "ignore-roa"
-            class_dict['24560'] = "ignore-roa"
+    def manual_analysis(class_dict: Dict, city: str,
+                        p3_empty_corner_cases: Dict[str, Set[str]] = None) -> None:
+        """Manual analysis for corner cases"""
+        if p3_empty_corner_cases:
+            for asn in p3_empty_corner_cases.get(IGNORE_ROA, set()):
+                class_dict[asn] = IGNORE_ROA
+            for asn in p3_empty_corner_cases.get(PREFER_PEER, set()):
+                class_dict[asn] = PREFER_PEER
 
 
     def classify(self, city: str, time_range: Dict,
@@ -372,7 +378,12 @@ class RouteProcessor:
             "20473": "ignore-roa"
         }
 
-        self.manual_analysis(class_dict, city)
+        p3_empty_corner_cases = {
+            IGNORE_ROA: set(),
+            PREFER_PEER: set()
+        }
+
+        self.manual_analysis(class_dict, city, p3_empty_corner_cases)
 
         # Perform classification in reverse order
         for i in range(max_len - 1, -1, -1):
@@ -382,7 +393,10 @@ class RouteProcessor:
                     if not asn_str.isdigit():
                         continue
                     if len(route_set[asn]) > i:
-                        self.classification_phase1(route_set[asn][i], class_dict, p2, p4, p5, p3, p1, city)
+                        self.classification_phase1(
+                            route_set[asn][i], class_dict, p2, p4, p5, p3, p1,
+                            city, p3_empty_corner_cases
+                        )
 
         # Handle corner cases
         corner_cases = {}
@@ -396,7 +410,7 @@ class RouteProcessor:
                             total_cases_phase1, p2, p5, p3, p1
                         )
 
-        self.manual_analysis(class_dict, city)
+        self.manual_analysis(class_dict, city, p3_empty_corner_cases)
 
         # Add appends and save results
         p2 = self.add_appends(p2)
@@ -425,6 +439,12 @@ def create_parser() -> argparse.ArgumentParser:
         required=True,
         help="Name of target measurement"
     )
+    parser.add_argument(
+        "--bgp-only",
+        dest="bgp_only",
+        action="store_true",
+        help="Process only BGP data (disable traceroute integration)"
+    )
     return parser
 
 def main() -> None:
@@ -436,10 +456,11 @@ def main() -> None:
         config = json.load(config_fd)
 
     traceroutes = []
-    traceroute_file = config[opts.measurement].get("traceroute_file")
-    if traceroute_file:
-        with open(f"../../docker/dataprocessing/data/{traceroute_file}", "r") as trace_data:
-            traceroutes = json.load(trace_data)
+    if not opts.bgp_only:
+        traceroute_file = config[opts.measurement].get("traceroute_file")
+        if traceroute_file:
+            with open(f"../../docker/dataprocessing/data/{traceroute_file}", "r") as trace_data:
+                traceroutes = json.load(trace_data)
 
     processor = RouteProcessor(opts.measurement)
     locations = [

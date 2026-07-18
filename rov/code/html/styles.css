@@ -61,7 +61,7 @@ a:hover {
     background: linear-gradient(to right, rgb(240, 240, 88) 50%, rgb(252, 192, 80) 50%);
 }
 
-.prefer-neighbor\/prefer-valid {
+.prefer-peer\/prefer-valid {
     background: rgb(84, 51, 145);
 }
 

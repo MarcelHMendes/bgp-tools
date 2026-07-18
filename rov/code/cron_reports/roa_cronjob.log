@@ -1,0 +1,10 @@
+--------------
+cronjob executado em 2026-07-18 02:10:52
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-18 02:15:05
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
