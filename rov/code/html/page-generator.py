@@ -69,7 +69,7 @@ def create_index():
         index_f.write("<div class='title-container''>")
         index_f.write(f'<h3>Prefer-neighbor or Prefer-valid</h3><br>')
         for asn in class_dict:
-            if class_dict[asn] == "prefer-neighbor/prefer-valid":
+            if class_dict[asn] == "prefer-peer/prefer-valid":
                 index_f.write(f"<a href='{asn}.html'>{asn}  </a>")
                 index_f.write("<br>")
         index_f.write("</div>")

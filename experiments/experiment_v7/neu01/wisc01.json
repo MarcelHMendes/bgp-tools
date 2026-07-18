@@ -1,0 +1,27 @@
+{
+    "email": "marcelmendes@dcc.ufmg.br",
+    "rounds": [
+        {
+            "138.185.228.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}]},
+            "138.185.229.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}]},
+            "138.185.230.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}, {"muxes": ["neu01"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]},
+            "138.185.231.0/24": {"announce": [{"muxes": ["neu01"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]},
+            "204.9.170.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}, {"muxes": ["neu01"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]}
+        },
+        {
+            "138.185.228.0/24": {"withdraw": ["wisc01","neu01"]},
+            "138.185.229.0/24": {"withdraw": ["wisc01","neu01"]},
+            "138.185.230.0/24": {"withdraw": ["wisc01","neu01"]},
+            "138.185.231.0/24": {"withdraw": ["wisc01","neu01"]},
+            "204.9.170.0/24": {"withdraw": ["wisc01","neu01"]}
+        },
+        {
+            "138.185.228.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}]},
+            "138.185.229.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}]},
+            "138.185.230.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}, {"muxes": ["neu01"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]},
+            "138.185.231.0/24": {"announce": [{"muxes": ["neu01"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]},
+            "204.9.170.0/24": {"announce": [{"muxes": ["wisc01"], "origin": 47065}, {"muxes": ["neu01"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]}
+        }
+    ],
+    "description": "Experiment 7 (traceroute-extended) wisc01 (valid 61574, invalid 47065) id: 14/05/2026"
+}
