@@ -23,5 +23,5 @@
             "204.9.170.0/24": {"announce": [{"muxes": ["vtrmadrid"], "origin": 47065}, {"muxes": ["neu01"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]}
         }
     ],
-    "description": "Experiment 7 (traceroute-extended) vtrmadrid (valid 61574, invalid 47065) id: 14/05/2026"
+    "description": "Experiment 7 (traceroute-extended) (goodsite neu01) vtrmadrid (valid 61574, invalid 47065) id: 18/07/2026"
 }
