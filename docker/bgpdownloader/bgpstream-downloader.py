@@ -139,6 +139,11 @@ def create_parser():
         help="Use singlefile interface to read from local files instead of broker",
     )
     parser.add_argument(
+        "--roa",
+        action="store_true",
+        help="Append _roa to the output filename",
+    )
+    parser.add_argument(
         "--data-dir",
         dest="data_dir",
         type=str,
@@ -218,7 +223,8 @@ def main():
     # Sort records before save
     stream_list = sort_records_by_timestamp(stream_list)
 
-    file_name = f"bgpdump_{TIMES[0]}_{TIMES[-1]}_{opts.dump_type}_{opts.project}.json"
+    roa_suffix = "_roa" if opts.roa else "_no_roa"
+    file_name = f"bgpdump_{TIMES[0]}_{TIMES[-1]}_{opts.dump_type}_{opts.project}{roa_suffix}.json"
     base_path = "/usr/src/app/data"
 
     with open(os.path.join(base_path, file_name), "w", encoding="utf-8") as fd:
