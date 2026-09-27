@@ -13,3 +13,418 @@ cronjob executado em 2026-07-18 08:00:01
 Consultando validador RPKI em https://rpki-validator.ripe.net/validity
 138.185.229.0/24 -> VALID: existe ROA para AS61574
 138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-19 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-20 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-21 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-22 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-23 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-24 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-25 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-26 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-27 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-28 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-29 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-30 08:00:02
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-07-31 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-01 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-02 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-03 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-04 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-05 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-06 08:00:02
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-07 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+--------------
+cronjob executado em 2026-08-08 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+--------------
+cronjob executado em 2026-08-09 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+--------------
+cronjob executado em 2026-08-10 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+--------------
+cronjob executado em 2026-08-11 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+--------------
+cronjob executado em 2026-08-12 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-13 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-14 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-15 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-16 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-17 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-18 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-19 08:00:02
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-20 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-21 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-22 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-23 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-24 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-26 08:00:03
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-27 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-28 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-29 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-08-29 23:30:37
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+138.185.228.0/24 -> NOT-FOUND: não encontrei ROA para AS61574
+--------------
+cronjob executado em 2026-08-29 23:32:17
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-08-30 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-08-31 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-01 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-02 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-03 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-04 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-05 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-06 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-07 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-08 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-09 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-10 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> VALID: existe ROA para AS61574
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+--------------
+cronjob executado em 2026-09-11 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-12 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-13 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-14 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-15 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-16 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-17 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-18 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-19 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-20 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-21 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-22 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-23 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-24 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-25 08:00:01
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574
+--------------
+cronjob executado em 2026-09-26 08:00:02
+Consultando validador RPKI em https://rpki-validator.ripe.net/validity
+138.185.229.0/24 -> VALID: existe ROA para AS61574
+138.185.230.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.231.0/24 -> NOT-FOUND: No VRP Covers the Route Prefix
+138.185.228.0/24 -> VALID: existe ROA para AS61574

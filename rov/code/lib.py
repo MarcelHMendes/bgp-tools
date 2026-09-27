@@ -146,6 +146,24 @@ def is_timestamp_between(start_timestamp, end_timestamp, check_timestamp):
     if is_utc_datetime(check_timestamp):
         check_timestamp = datetime_str_to_timestamp(check_timestamp)
 
+    try:
+        start_timestamp = float(start_timestamp)
+    except (TypeError, ValueError):
+        print(f"[is_timestamp_between] invalid start timestamp {start_timestamp!r}")
+        return False
+
+    try:
+        end_timestamp = float(end_timestamp)
+    except (TypeError, ValueError):
+        print(f"[is_timestamp_between] invalid end timestamp {end_timestamp!r}")
+        return False
+
+    try:
+        check_timestamp = float(check_timestamp)
+    except (TypeError, ValueError):
+        print(f"[is_timestamp_between] invalid check timestamp {check_timestamp!r}")
+        return False
+
     if start_timestamp <= end_timestamp:
         return start_timestamp <= check_timestamp <= end_timestamp
     else:
@@ -358,10 +376,36 @@ def read_bgpdump_file(bgpdump_file, start_timestamp=None, end_timestamp=None):
     if is_utc_datetime(end_timestamp):
         end_timestamp = datetime_str_to_timestamp(end_timestamp)
 
+    if start_timestamp is not None:
+        try:
+            start_timestamp = float(start_timestamp)
+        except (TypeError, ValueError):
+            print(f"[read_bgpdump_file] invalid start timestamp {start_timestamp!r} in {bgpdump_file}; skipping start filter")
+            start_timestamp = None
+
+    if end_timestamp is not None:
+        try:
+            end_timestamp = float(end_timestamp)
+        except (TypeError, ValueError):
+            print(f"[read_bgpdump_file] invalid end timestamp {end_timestamp!r} in {bgpdump_file}; skipping end filter")
+            end_timestamp = None
+
     for rec in data:
-        if start_timestamp and rec["timestamp"] < start_timestamp:
+        rec_timestamp = rec.get("timestamp")
+        if isinstance(rec_timestamp, str):
+            try:
+                rec_timestamp = float(rec_timestamp)
+            except (TypeError, ValueError):
+                print(f"[read_bgpdump_file] skipping record with invalid timestamp {rec.get('timestamp')!r} in {bgpdump_file}: {rec}")
+                continue
+
+        if rec_timestamp is None:
+            print(f"[read_bgpdump_file] skipping record without timestamp in {bgpdump_file}: {rec}")
             continue
-        if end_timestamp and rec["timestamp"] > end_timestamp:
+
+        if start_timestamp is not None and rec_timestamp < start_timestamp:
+            continue
+        if end_timestamp is not None and rec_timestamp > end_timestamp:
             continue
         records.append(rec)
 

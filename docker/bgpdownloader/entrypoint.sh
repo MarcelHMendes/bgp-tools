@@ -4,7 +4,8 @@ set -e
 
 pushd /usr/src/app
 
-prefix=$(jq -r '.prefix' config.json)
+prefix_roa=$(jq -r '.prefix_roa' config.json)
+prefix_no_roa=$(jq -r '.prefix_no_roa' config.json)
 dump_type=$(jq -r '.dump_type' config.json)
 project=$(jq -r '.project' config.json)
 start_date=$(jq -r '.start_date' config.json)
@@ -19,4 +20,18 @@ if [ "$singlefile" = "true" ]; then
   python3 routeviews_updates_downloader.py --start-date "$start_date" --stop-date "$end_date" --data-dir "$data_dir"
 fi
 
-exec python3 bgpstream-downloader.py --prefixes "$prefix" --dump_type "$dump_type" --project "$project" --start-date "$start_date" --stop-date "$end_date" $singlefile_flag --data-dir "$data_dir"
+python3 bgpstream-downloader.py --prefixes "$prefix_roa" --dump_type "$dump_type" --project "$project" --start-date "$start_date" --stop-date "$end_date" $singlefile_flag --data-dir "$data_dir" --roa &
+roa_pid=$!
+
+python3 bgpstream-downloader.py --prefixes "$prefix_no_roa" --dump_type "$dump_type" --project "$project" --start-date "$start_date" --stop-date "$end_date" $singlefile_flag --data-dir "$data_dir" &
+no_roa_pid=$!
+
+status=0
+if ! wait "$roa_pid"; then
+  status=1
+fi
+if ! wait "$no_roa_pid"; then
+  status=1
+fi
+
+exit "$status"

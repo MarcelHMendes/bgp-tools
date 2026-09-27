@@ -26,7 +26,7 @@ def routeviews_db():
 def load_ip2asn_csv(csv_path):
     """Load IP to ASN mapping from CSV file using team cymru data"""
     ip2asn_dict = {}
-    with open(csv_path, 'r') as f:
+    with open(csv_path, 'r', encoding='utf-8', errors='replace') as f:
         for line in f:
             parts = line.strip().split(',')
             if len(parts) >= 2:
@@ -49,12 +49,15 @@ def ip2asn_mapping(radixdb, ip2asn_dict, traceroute_hops=None):
 
 
 def resolve_asn(radixdb, ip2asn_dict,ip_str=None):
+    global HIT, MISS
+    #print("Primeira parte ok, entrou no resolve_asn")
     if not ip_str:
         return None
 
     # resolve private IPs
     if lib.is_private_ip(ip_str):
         asn = "private"
+        HIT += 1
         return asn
 
     # resolve PEERING ips
@@ -63,10 +66,17 @@ def resolve_asn(radixdb, ip2asn_dict,ip_str=None):
     if not asn:
         asn = radixdb.get(ip_str)
 
+    if asn:
+        HIT += 1
+        return asn
+
     # resolve via CSV (last resort)
     if ip2asn_dict and ip_str in ip2asn_dict:
+        HIT += 1
         return ip2asn_dict[ip_str]
 
+    MISS += 1
+    #print("Chegou no final do resolve_asn, não conseguiu resolver o ASN para o IP:", ip_str)
     return None
 
 
@@ -182,7 +192,7 @@ def main():
             parsed_traceroute["src_addr"] = traceroute.get("src_addr", "*")
             parsed_traceroute["dst_addr"] = traceroute.get("dst_addr", "*")
             parsed_traceroute["endtime"] = traceroute.get("endtime", "*")
-
+            #print(f"Processing traceroute from {parsed_traceroute['src_addr']} to {parsed_traceroute['dst_addr']}")
             origin = resolve_asn(rv_ip2asn, ip2asn_dict=ip2asn_dict,ip_str=traceroute.get("src_addr", None))
             asn_path = ip2asn_mapping(
                 rv_ip2asn, ip2asn_dict=ip2asn_dict, traceroute_hops=traceroute.get("result", None)

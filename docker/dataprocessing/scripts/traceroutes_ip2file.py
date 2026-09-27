@@ -12,6 +12,8 @@ import lib
 
 def dump_traceroute_ips(fd, traceroute_hops):
     for hop in traceroute_hops:
+        if "error" in hop:
+            continue
         result = hop.get("result", None)
         if not result:
             continue
@@ -56,8 +58,14 @@ def main():
     for file in lib.get_ripe_files_list(opts.ripedir):
         fd = open(os.path.join(opts.ripedir, file), "r")
         data = json.load(fd)
+        if not isinstance(data, list):
+            print(f"File {file} is not a list, skipping")
+            continue
         for traceroute in data:
-            dump_traceroute_ips(fd_out, traceroute.get("result", {}))
+            if isinstance(traceroute, str) or isinstance(traceroute, list):
+                print(file)
+                break
+            dump_traceroute_ips(fd_out, traceroute.get("result", []))
 
 
 if __name__ == "__main__":

@@ -9,7 +9,7 @@ import re
 import json
 import argparse
 from multiprocessing import Pool
-from typing import Dict, List, Tuple, Set, Any
+from typing import Dict, List, Tuple, Set, Any, Optional
 
 # Constants
 BAD_ORIGIN = "47065"
@@ -331,7 +331,7 @@ class RouteProcessor:
 
     @staticmethod
     def manual_analysis(class_dict: Dict, city: str,
-                        p3_empty_corner_cases: Dict[str, Set[str]] = None) -> None:
+                        p3_empty_corner_cases: Optional[Dict[str, Set[str]]] = None) -> None:
         """Manual analysis for corner cases"""
         if p3_empty_corner_cases:
             for asn in p3_empty_corner_cases.get(IGNORE_ROA, set()):
@@ -387,7 +387,7 @@ class RouteProcessor:
 
         # Perform classification in reverse order
         for i in range(max_len - 1, -1, -1):
-            for route_set in (p2,): #p2,p3,p4,p5
+            for route_set in (p2,):
                 for asn in route_set:
                     asn_str = str(asn)
                     if not asn_str.isdigit():
@@ -402,7 +402,7 @@ class RouteProcessor:
         corner_cases = {}
         total_cases_phase1 = {}
         for i in range(max_len - 1, -1, -1):
-            for route_set in (p2,): #p2,p3,p4,p5
+            for route_set in (p2,):
                 for asn in route_set:
                     if len(route_set[asn]) > i:
                         self.classification_phase2(

@@ -94,7 +94,8 @@ def process_atlas_request(args) -> None:
     success, response = request.create()
     if not success:
         logging.error("Error downloading result for measurement %d", mid)
-        logging.error(json.dumps(response, indent=2))
+        logging.error("%r", response)
+        return
 
     with open(opts.output_dir / f"{mid}.json", "w") as outfd:
         results = list(response)
