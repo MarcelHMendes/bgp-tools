@@ -190,7 +190,7 @@ class RouteProcessor:
             end_timestamp=end,
         )
         return {
-            rec["peer_asn"]: rec["as-path"]
+            str(rec["peer_asn"]): rec["as-path"]
             for rec in records
             if rec["prefix"] == prefix and rec["type"] == "A"
         }
@@ -265,10 +265,8 @@ class RouteProcessor:
 
         # Trata Corner Case: p3 empty + close to origin
         if p2_ends_bad and p4_ends_bad and p5_ends_bad and p3_is_empty and p1_ends_bad:
-            print(asn_t, f"corner case: p3 empty + {city}")
             p3_empty_corner_cases[IGNORE_ROA].add(asn_t)
         if p2_ends_bad and p4_ends_bad and p5_ends_good and p3_is_empty and p1_ends_bad:
-            print(asn_t, f"corner case: p3 empty + {city} prefer-valid or prefer neighbor")
             p3_empty_corner_cases[PREFER_PEER].add(asn_t)
 
         if p2_ends_bad and p4_ends_bad and p5_ends_bad and p3_ends_good and p1_ends_bad:
@@ -281,7 +279,7 @@ class RouteProcessor:
             class_dict[asn_t] = "unknown"
 
     def classification_phase2(self, asn_t: str, class_dict: Dict, corner_cases: Dict,
-                            total_corner_case: Dict, p2: Dict, p5: Dict, p3: Dict, p1: Dict) -> None:
+                            total_corner_case: Dict, p2: Dict, p4: Dict, p5: Dict, p3: Dict, p1: Dict) -> None:
         """Second phase of ASN classification with corner case handling"""
         if (not asn_t.isdigit() or asn_t in (BAD_ORIGIN, GOOD_ORIGIN, "20473") or
             asn_t not in class_dict):
@@ -301,6 +299,10 @@ class RouteProcessor:
             if not self.check_target_receive_route(asn_t, p5, GOOD_ORIGIN):
                 class_dict[asn_t] = "prefer-ignore"
                 corner_cases[asn_t] = ("ignore-roa", "prefer-ignore")
+
+        elif classification == "unknown":
+            if p4.get(asn_t, []) and int(p4[asn_t][-1]) == int(BAD_ORIGIN):
+                class_dict[asn_t] = "prefer-ignore"
 
         elif classification == "prefer-valid":
             if self.check_intersection(asn_t, p2, p5, p3, p1):
@@ -330,14 +332,16 @@ class RouteProcessor:
             pickle.dump(data, f)
 
     @staticmethod
-    def manual_analysis(class_dict: Dict, city: str,
+    def manual_analysis(p3: Dict[str, List[str]],
                         p3_empty_corner_cases: Optional[Dict[str, Set[str]]] = None) -> None:
-        """Manual analysis for corner cases"""
+        """Inject synthetic p3 routes for corner cases before phase2."""
         if p3_empty_corner_cases:
             for asn in p3_empty_corner_cases.get(IGNORE_ROA, set()):
-                class_dict[asn] = IGNORE_ROA
+                p3[asn] = [asn, BAD_ORIGIN]
             for asn in p3_empty_corner_cases.get(PREFER_PEER, set()):
-                class_dict[asn] = PREFER_PEER
+                p3[asn] = [
+                    asn, "20473", BAD_ORIGIN, GOOD_ORIGIN
+                ]
 
 
     def classify(self, city: str, time_range: Dict,
@@ -383,8 +387,6 @@ class RouteProcessor:
             PREFER_PEER: set()
         }
 
-        self.manual_analysis(class_dict, city, p3_empty_corner_cases)
-
         # Perform classification in reverse order
         for i in range(max_len - 1, -1, -1):
             for route_set in (p2,):
@@ -398,6 +400,8 @@ class RouteProcessor:
                             city, p3_empty_corner_cases
                         )
 
+        self.manual_analysis(p3, p3_empty_corner_cases)
+
         # Handle corner cases
         corner_cases = {}
         total_cases_phase1 = {}
@@ -407,10 +411,8 @@ class RouteProcessor:
                     if len(route_set[asn]) > i:
                         self.classification_phase2(
                             route_set[asn][i], class_dict, corner_cases,
-                            total_cases_phase1, p2, p5, p3, p1
+                            total_cases_phase1, p2, p4, p5, p3, p1
                         )
-
-        self.manual_analysis(class_dict, city, p3_empty_corner_cases)
 
         # Add appends and save results
         p2 = self.add_appends(p2)
