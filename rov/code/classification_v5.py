@@ -138,6 +138,7 @@ class RouteProcessor:
                 return False
         return True
 
+    # Original version with valley-free check
     def check_target_receive_route(self, asn_t: str, route: Dict, origin: str) -> bool:
         """Check if target ASN receives route from neighbors"""
         if len(route.get(asn_t, [])) < 2:
@@ -153,6 +154,16 @@ class RouteProcessor:
             return False
 
         return all(self.is_valley_free(route[c], asn_t) for c in candidates)
+
+    #def check_target_receive_route(self, asn_t: str, route: Dict, origin: str) -> bool:
+    #    """Check if target ASN receives route from any neighbor (no valley-free check)"""
+    #    if len(route.get(asn_t, [])) < 2:
+    #        return False
+    #
+    #    return any(
+    #        n in route and len(route[n]) >= 2 and route[n][-1] == origin
+    #        for n in self.find_neighbors(asn_t)
+    #    )
 
     @staticmethod
     def assert_one_classification(asn_t: str, data: Dict, class_t: List[str], class_dict: Dict) -> bool:
@@ -271,6 +282,7 @@ class RouteProcessor:
 
         if p2_ends_bad and p4_ends_bad and p5_ends_bad and p3_ends_good and p1_ends_bad:
             class_dict[asn_t] = "ignore-roa"
+            print("classifying as ignore-roa: %s" % asn_t)
         elif p2_ends_bad and p4_ends_bad and p5_ends_good and p3_ends_good and p1_ends_bad:
             class_dict[asn_t] = "prefer-valid"
         elif p2_ends_bad and not p4.get(asn_t, []) and p5_ends_good and p3_ends_good and p1_ends_bad:
@@ -290,7 +302,7 @@ class RouteProcessor:
 
         if classification == "drop-invalid":
             if self.assert_one_classification(
-                asn_t, p2, ["drop-invalid", "unknown", "prefer-valid"], class_dict
+                asn_t, p2, ["drop-invalid", "unknown", "prefer-valid", "unknown-protected"], class_dict
             ):
                 class_dict[asn_t] = "unknown-protected"
                 corner_cases[asn_t] = ("drop-invalid", "unknown-protected")
@@ -300,7 +312,7 @@ class RouteProcessor:
                 class_dict[asn_t] = "prefer-ignore"
                 corner_cases[asn_t] = ("ignore-roa", "prefer-ignore")
 
-        elif classification == "unknown":
+        elif classification == "unknown": # CRIAR CLASSIFICAÇÃO PREFER-IGNORE-PEER para esse caso, pois ele pode entrar nessas 3 classificações
             if p4.get(asn_t, []) and int(p4[asn_t][-1]) == int(BAD_ORIGIN):
                 class_dict[asn_t] = "prefer-ignore"
 

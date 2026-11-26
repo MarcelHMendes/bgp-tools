@@ -23,5 +23,5 @@
             "204.9.170.0/24": {"announce": [{"muxes": ["vtrjohannesburg"], "origin": 47065}, {"muxes": ["vtrseoul"], "origin": 61574, "prepend": [61574,61574,61574,61574,61574]}]}
         }
     ],
-    "description": "Experiment 7 (traceroute-extended) vtrjohannesburg (valid 61574, invalid 47065) id: 06/06/2026"
+    "description": "Experiment 7 (traceroute-extended) (goodsite vtrseoul) vtrjohannesburg (valid 61574, invalid 47065) id: 29/08/2026"
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Consistência de classificação: $title</title>
+<style>
+body{font-family:sans-serif;margin:2em;max-width:1000px}
+table{border-collapse:collapse;margin-bottom:1.5em}
+th,td{border:1px solid #ccc;padding:4px 10px;text-align:left}
+th{background:#f0f0f0}
+.bar{display:flex;height:22px;width:400px;border:1px solid #ccc}
+.ok{background:#4caf50}.bad{background:#e53935}
+input{padding:4px;margin-bottom:8px;width:300px}
+</style></head><body>
+<h1>Consistência de classificação: $title</h1>
+<div class="bar"><div class="ok" style="width:$pct_ok"></div><div class="bad" style="width:$pct_bad"></div></div>
+<p>$n_ok consistentes ($pct_ok) / $n_bad inconsistentes ($pct_bad) de $total ASNs</p>
+<h2>Pares conflitantes</h2>
+<table><tr><th>Par</th><th>ASNs</th></tr>$pair_rows</table>
+<h2>Classificações (todas as cidades)</h2>
+<table><tr><th>Rótulo</th><th>Ocorrências</th></tr>$label_rows</table>
+<h2>Classificação final por ASN (apenas ASNs consistentes)</h2>
+<table><tr><th>Rótulo</th><th>ASNs</th></tr>$final_rows</table>
+<h2>ASNs inconsistentes</h2>
+<input id="filter" placeholder="Filtrar por ASN, par ou rótulo">
+<table id="asns"><tr><th>ASN</th><th>Conflitos</th><th>Classificações</th></tr>$asn_rows</table>
+<script>
+const rows=[...document.querySelectorAll('#asns tr')].slice(1);
+document.getElementById('filter').oninput=e=>rows.forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(e.target.value.toLowerCase()));
+</script></body></html>
